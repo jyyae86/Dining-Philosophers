@@ -1,3 +1,5 @@
+import java.util.concurrent.Semaphore;
+
 public class DiningPhilosophers {
 
 	public static void main(String args[]) {
@@ -8,6 +10,7 @@ public class DiningPhilosophers {
 		Chopstick c2 = new Chopstick(2);
 		Chopstick c3 = new Chopstick(3);
 		Chopstick c4 = new Chopstick(4);
+	
 		
 		Thread p0 = new Philosopher(0, table, c0, c4);
 		Thread p1 = new Philosopher(1, table, c1, c0);
@@ -20,5 +23,8 @@ public class DiningPhilosophers {
 		p2.start();
 		p3.start();
 		p4.start();
+		
+		
+		
 	}
 }

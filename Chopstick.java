@@ -11,20 +11,24 @@ public class Chopstick {
 	}
 	
 	synchronized boolean take() {
-		
-		if (free == true){
-			free = false;
-			return true;
-			} else
-				return false;
+		boolean result = true;
+		if (free != true){
+			try {
+				wait(1000);
+				if(free == false){
+					result = false;
+				}
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} 
+		return result;
 	}
 	
-	synchronized boolean release() {
-		if (free == false){
-			free = true;
-			return free;
-			} else
-				return false;
+	synchronized void release() {
+		free = true;
+		notify();
 	}
 	    
 	public int getID() {
