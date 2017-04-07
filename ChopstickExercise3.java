@@ -1,8 +1,7 @@
-public class Chopstick {
+
+public class ChopstickExercise3 {
 	private int ID;
 	private boolean free;
-
-	
 
 	Chopstick(int ID) {
 		  this.ID = ID;
@@ -10,17 +9,20 @@ public class Chopstick {
 	
 	}
 	
-	synchronized void take() {
+	synchronized boolean take() {
+		boolean result = true;
 		if (free != true){
 			try {
-				wait();
+				wait(1000);
+				if(free == false){
+					result = false;
+				}
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}else{
-			free = false;
-		}
+		} 
+		return result;
 	}
 	
 	synchronized void release() {
